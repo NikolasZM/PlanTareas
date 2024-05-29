@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void taskScheduler( vector<int>& beneficios,  vector<int>& plazos, vector<int>& sol) {
+void tareas( vector<int>& beneficios,  vector<int>& plazos, vector<int>& sol) {
     int n = beneficios.size();
     vector<int> indices(n);
 
@@ -17,14 +17,14 @@ void taskScheduler( vector<int>& beneficios,  vector<int>& plazos, vector<int>& 
         });
 
     sol.resize(n, 0);
-    vector<bool> timeSlot(n, false);
+    vector<bool> tiempo(n, false);
 
     for (int i = 0; i < n; i++) {
-        int taskIdx = indices[i];
-        for (int j = min(n, plazos[taskIdx]) - 1; j >= 0; j--) {
-            if (!timeSlot[j]) {
-                timeSlot[j] = true;
-                sol[j] = taskIdx + 1; 
+        int tareanum = indices[i];
+        for (int j = min(n, plazos[tareanum]) - 1; j >= 0; j--) {
+            if (!tiempo[j]) {
+                tiempo[j] = true;
+                sol[j] = tareanum + 1; 
                 break;
             }
         }
@@ -36,7 +36,7 @@ int main() {
     vector<int> plazos = { 1, 1, 3, 3 };
     vector<int> solucion;
 
-    taskScheduler(beneficios, plazos, solucion);
+    tareas(beneficios, plazos, solucion);
 
     cout << "Orden de tareas seleccionadas (0 significa que no hay tarea a realizar en ese momento): ";
     for (int i = 0; i < solucion.size(); i++) {
